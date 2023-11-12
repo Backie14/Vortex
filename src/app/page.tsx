@@ -36,7 +36,7 @@ const Home: React.FC = () => {
   const searchGifs = async (searchQuery: string, loadMore = false) => {
     try {
       setLoading(true);
-      const apiKey = process.env.GIPHY_API;
+      const apiKey = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
       const limit = 10;
       const apiUrl = `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${apiKey}&limit=${limit}&offset=${
         loadMore ? offset + limit : 0
@@ -128,6 +128,7 @@ const Home: React.FC = () => {
           Dive into the Gif Universe with Whirlwind Wonders and Delightful
           Surprises!
         </p>
+        {!isUser&&<p className="text-sm text-gray-500"> you have to signed in to search</p>}
 
         <InfiniteScroll
           dataLength={searchResults.length}
