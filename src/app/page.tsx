@@ -124,11 +124,11 @@ const Home: React.FC = () => {
             Search
           </button> */}
         </div>
-        <p className="mb-6 text-cyan-600 font-bold shadow-cyan-100">
+        <p className="mb-6 text-cyan-600 font-bold shadow-cyan-100 text-center">
           Dive into the Gif Universe with Whirlwind Wonders and Delightful
           Surprises!
         </p>
-        {!isUser&&<p className="text-sm text-gray-500"> you have to signed in to search</p>}
+        {!isUser&&<p className="text-sm text-white "> You have to signed in to search</p>}
 
         <InfiniteScroll
           dataLength={searchResults.length}
