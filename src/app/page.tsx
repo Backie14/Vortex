@@ -36,7 +36,7 @@ const Home: React.FC = () => {
   const searchGifs = async (searchQuery: string, loadMore = false) => {
     try {
       setLoading(true);
-      const apiKey = "GlVGYHkr3WSBnllca54iNt0yFbjz7L65";
+      const apiKey = process.env.GIPHY_API;
       const limit = 10;
       const apiUrl = `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${apiKey}&limit=${limit}&offset=${
         loadMore ? offset + limit : 0
