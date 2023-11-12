@@ -8,10 +8,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-const Navbar = (
-  {isUser,setIsUser}:{isUser: boolean,
-  setIsUser: Dispatch<React.SetStateAction<boolean>>}
-) => {
+const Navbar = ({
+  isUser,
+  setIsUser,
+}: {
+  isUser: boolean;
+  setIsUser: Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -147,16 +150,7 @@ const Navbar = (
           >
             {isUser ? (
               <>
-                <li>
-                  <div className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </div>
-                </li>
-                <li>
-                  <a>Reset Password</a>
-                </li>
-                <li>
+                <li onClick={()=>{auth.signOut().then(()=>{setIsUser(false);alert("Sign Out Succes Fully");})}}>
                   <a>Logout</a>
                 </li>
               </>
@@ -164,14 +158,18 @@ const Navbar = (
               <>
                 <li
                   onClick={() =>
-                    document.getElementById("my_modal_1")?.showModal()
+                    (
+                      document.getElementById("my_modal_1") as HTMLFormElement
+                    )?.showModal()
                   }
                 >
                   <div>Sign Up</div>
                 </li>
                 <li
                   onClick={() =>
-                    document.getElementById("my_modal_2")?.showModal()
+                    (
+                      document.getElementById("my_modal_2") as HTMLFormElement
+                    )?.showModal()
                   }
                 >
                   <div>Log In</div>

@@ -31,6 +31,7 @@ const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
   const [isUser, setIsUser] = useState(false);
+  const [loadingstate,setLoadingstate] = useState(true)
 
   const searchGifs = async (searchQuery: string, loadMore = false) => {
     try {
@@ -92,18 +93,19 @@ const Home: React.FC = () => {
   
 
   useEffect(() => {
-    console.log(auth.currentUser);
-    if (auth.currentUser != null) {
-      setIsUser(true);
-    }
+    auth.onAuthStateChanged((user)=>{
+      if(user!=null){
+        setIsUser(true)
+      }
+      setLoadingstate(false)
+    })
   }, []);
 
   return (
     <>
-      <Navbar isUser={isUser} setIsUser={setIsUser}/>
-
+      <Navbar isUser={isUser} setIsUser={setIsUser} />
       <div className="min-h-screen flex flex-col items-center justify-center relative">
-        {loading && <Loader />}
+        {(loading || loadingstate) && <Loader />}
         <h1 className="text-4xl font-bold font-sans mb-4 mt-16 text-cyan-400 shadow-cyan-100">
           Vortex Vibes
         </h1>
