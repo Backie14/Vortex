@@ -142,7 +142,7 @@ const Home: React.FC = () => {
         >
           {searchResults.map((gif) => (
             <div key={gif.id} className="flex flex-col items-center">
-              <Image
+              <img
                 src={gif.images.fixed_height.url}
                 alt={gif.title}
                 width={200}
